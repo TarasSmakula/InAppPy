@@ -110,7 +110,7 @@ class GooglePlayVerifier(object):
             if cancel_reason != 0:
                 raise GoogleError('Subscription is canceled', result)
 
-            ms_timestamp = result.get('expiryTimeMillis', 0)
+            ms_timestamp = int(result.get('expiryTimeMillis', 0))
             if self._ms_timestamp_expired(ms_timestamp):
                 raise GoogleError('Subscription expired', result)
         else:
